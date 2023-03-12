@@ -49,5 +49,14 @@ describe("Here we Test Pets component",()=>{
       expect(screen.getAllByRole("article")).toStrictEqual([cards[2]])
       
   }) 
+  test('will render on female and favourite ',async()=>{
+    const cards=await screen.findAllByRole("article")
+    userEvent.click(within(cards[0]).getByRole('button'))
+    userEvent.click(within(cards[2]).getByRole('button'))
+    userEvent.click(within(cards[4]).getByRole('button'))
+    userEvent.selectOptions(screen.getByLabelText(/Favourite/i),"Favoured")
+    expect(screen.getAllByRole("article")).toStrictEqual([cards[0],cards[2],cards[4]])
+    
+}) 
 
 })
